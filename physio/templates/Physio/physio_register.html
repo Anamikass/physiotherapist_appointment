@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block base_head %}
+
+    <section class="page-title text-center" style="background-image:url(assets/images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Register</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% url 'home' %}">home &nbsp;/</a>
+                </li>
+                <li>Physiotherapist register</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="service-tab-section section">
+    <!-- container start -->
+    <h1 class="text-center text-primary"> Physiotherapist Registration</h1><br><br><br>
+    <div class="outer-box clearfix">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="contact-form">
+                    <!-- contact form start -->
+                    <form method="post" action="{% url 'physio_register_success' %}" class="row" enctype="multipart/form-data" data-parsley-validate="">
+                        {% csrf_token %}
+                    <div class="form-group col-md-6">
+                        <label>Physiotherapist Name : </label>
+                        <input type="text" name="p_fname" class="form-control" value="" maxlength="50" required="">
+
+                    </div>
+
+                        <div class="form-group col-md-6">
+                        <label>Last Name : </label>
+                        <input type="text" name="p_lname" class="form-control" value="" maxlength="50" required="">
+
+                    </div>
+                     <div class="form-group col-md-6">
+                        <label>Password : </label>
+                        <input type="password" name="password" class="form-control" value="" maxlength="8" required="">
+
+                    </div>
+
+
+
+                    <div class="form-group col-md-6">
+                        <label>Date Of Birth : </label>
+                        <input type="date" name="dob" class="form-control" value="" maxlength="50" required="">
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Email : </label>
+                        <input type="email" name="email" class="form-control" value="" maxlength="30" required="">
+
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label>Contact No. : </label>
+                        <input type="text" name="mobile" class="form-control" value="" maxlength="12" required="">
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Total experience : </label>
+                        <input type="text" name="experience" class="form-control" value="" maxlength="12" required="">
+
+                    </div>
+                     <div class="form-group col-md-6">
+                        <label>Address : </label>
+                        <textarea name="Address" class="form-control" required=""></textarea>
+
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label>Photo : </label>
+                        <input type="file" name="image" id="fileUpload" required="" >
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Document upload: </label>
+                        <input type="file" name="document" id="fileToUpload"  required="">
+
+                    </div>
+
+
+
+                    <div class="form-group col-md-4">
+                        <label>State : </label><br>
+                        <select name="state" id="state" class="form-control" required>
+                                <option selected="" disabled="">Select State</option>
+                            {% for state in state_list %}
+                                <option value="{{state.id}}">{{state.state_name}}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+
+                         <div class="form-group col-md-4">
+                        <label>City : </label>
+                        <select name="city" id="city" class="form-control" required="">
+                                <option selected="" disabled="">Select City</option>
+                                
+                        </select>
+
+                    </div>
+
+
+
+
+
+                        <div class="form-group col-md-4">
+                        <label>Area : </label>
+                        <select name="area" id="area" class="form-control" required="">
+                                <option selected="" disabled="">Select Area</option>
+                                {% for area in area_list %}                         
+                                       <option value="{{area.id}}">{{area.area_name}}</option>
+                                {% endfor %}
+                        </select>
+
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Degree : </label><br>
+                        <select name="degree" class="form-control" required>
+
+                                {% for degree in degree_list %}
+                                <option selected="" disabled="">Select Degree</option>
+                                <option value="{{degree.id}}">{{degree.degree_name}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                     <div class="form-group col-md-4">
+                        <label>Specialization : </label><br>
+                        <select name="specialization" class="form-control">
+                                {% for specialization in specialization_list %}
+                                <option selected="" disabled="">Select Specialization</option>
+                                <option value="{{specialization.id}}">{{specialization.specialization_name}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+                         <div class="form-group col-md-4" style="margin-top:30px;" >
+                        <label>Gender : </label>
+                        <input type="radio" name="Gender" value="Male" >Male
+                        <input type="radio" name="Gender" value="Female" >Female
+
+                    </div>
+
+                    <div class="form-group  col-md-6">
+                        <label>Choose Question : </label>
+                        <select name="seq_que" class="form-control">
+                                {% for security_question in sec_que_list %}
+                                <option selected="" disabled="">Choose Security Question</option>
+                                <option value="{{security_question.id}}">{{security_question.que_name}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+                     <div class="form-group col-md-6">
+                        <label>Answer : </label>
+                        <input type="text" name="answer" class="form-control" value="" maxlength="12" required="">
+
+                    </div>
+
+                     <div class="col-md-12 text-right">
+                            <button class="btn btn-style-one" type="submit">Submit</button>
+                        </div>
+
+                    </form>
+                    <!-- contact form end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container end -->
+    </div>
+</section>
+{% endblock %}
+
+{% block end_js %}
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $("#state").change(function(){
+                alert('State is selected');
+                var stateid = $("#state").val();
+                alert(stateid);
+                $.ajax({
+                    type:'POST',
+                    url:'state_ajax',
+                    data:{'sid':stateid,
+                          'csrfmiddlewaretoken': '{{ csrf_token }}',
+                         },
+                    success:function(cid){
+                        console.log(cid);
+
+                        alert(cid);
+                        $('#city').html(cid);
+                    }
+                });
+        });
+
+        $("#city").selected(function(){
+                alert('city is selected');
+                var cityid = $("#city").val();
+                alert(cityid);
+                $.ajax({
+                    type:'POST',
+                    url:'city_ajax',
+                    data:{'cd':stateid,
+                          'csrfmiddlewaretoken': '{{ csrf_token }}',
+                         },
+                    success:function(cid){
+                        console.log(cid);
+
+                        alert(cid);
+                        $('#area').html(cid);
+                    }
+                });
+                // .done(function(cid){
+                //     alert('data recieved by ajax');
+                //     var result = new Array();
+                //     result = cid;                             
+                //     alert(result.data)
+                //     $('#city').empty();
+
+                //     // for(var i=0;i<result.length;i++){
+                //     //     $('#city').append($('option').val(result[i][0]).text(result[i][1]));
+                //     // }
+                //     $.each(cid,function(val,text){
+                //         $('#city').append($("<option></option>").attr("value",val).text(text));
+                //     });
+                //     // for(var i=0;i<cid.length;i++){
+                //     //     $('#city').after($('option').val(cid[i].id).text(cid[i].city_name));
+                //     // }
+                // });
+        });
+    });
+               
+  </script>
+
+{% endblock %}
+</body>
+<!-- success:function(result){
+                            console.log(result);
+                            $("#selectcities option").remove();
+                            for (var i = result.length - 1; i >= 0; i--) {
+                                $("#selectcities").append('<option>'+ result[i].name +'</option>');
+                            };
+                          }, -->
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

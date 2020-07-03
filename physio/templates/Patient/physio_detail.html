@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+{% extends 'base_patient.html' %}
+{% load static %}
+
+
+
+<!--Page Title-->
+<head>
+	<title></title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+	<meta charset="utf-8">
+  <title>Physio Plus</title>
+
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick-theme.css' %}">
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="{% static 'plugins/fancybox/jquery.fancybox.min.css' %}">
+
+  <!-- Stylesheets -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+
+
+</head>
+<body>
+{% block base_head %}
+
+<!--team section-->
+<section class="team-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h1>Dr. {{ physio.first_name }} {{ physio.last_name }}</h1>
+<br>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="team-member">
+                    <img src="/{{ physio.image }}" alt="doctor" class="img-responsive">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <br>
+                <p><strong>Address : </strong> <a href="">{{ physio.address }}</a></p>
+                <p><strong>E-mail : </strong> {{ physio.email }}</p>
+                <p><strong>Contact : </strong> {{ physio.ph_no }}</p>
+                <p><strong>Experience : </strong> {{ physio.experience }}</p>
+                <p><strong>Area : </strong> {{ physio.area_id.area_name }}</p>
+            <br><br><br>
+                <div class="link-btn col-lg-2">
+                        <a href="{% url 'appointments' physio.id %}" class="btn-style-one">Book an Appointment</a>
+                </div>
+                <div class="link-btn col-lg-2">
+                        <a href="{% url 'complaints' physio.id %}" class="btn-style-one">Make a complaint</a>
+                </div>
+                <div class="link-btn col-lg-2">
+                        <a href="{% url 'feedbacks' physio.id %}" class="btn-style-one">Give Feedback</a>
+                </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

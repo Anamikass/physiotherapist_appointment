@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:32:37 GMT -->
+<head>
+  <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+  <title>Physio Plus</title>
+
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick-theme.css' %}">
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="{% static 'plugins/fancybox/jquery.fancybox.min.css' %}">
+
+  <!-- Stylesheets -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+    <!--data-parsley-->
+    <link href="{% static 'css/validation.css' %}" rel="stylesheet">
+    <script src="{% static 'js/validation.js' %}"></script>
+    <link href="mdtimepicker.css" rel="stylesheet">
+
+
+</head>
+
+
+<body>
+  <div class="page-wrapper">
+    <!-- Preloader -->
+    <!-- <div class="preloader"></div> -->
+    <!-- Preloader -->
+
+
+
+<!--header top-->
+<!--<div class="header-top">-->
+<!--      <div class="container clearfix">-->
+<!--            <div class="top-left">-->
+<!--                  <h6>Opening Hours : Monday to saturday - 8am to 10pm</h6>-->
+<!--            </div>-->
+<!--            <div class="top-right">-->
+<!--                  <ul class="social-links">-->
+<!--                        <li>-->
+<!--                              <a href="{% static '#">-->
+<!--                                    <i class="fa fa-facebook" aria-hidden="true"></i>-->
+<!--                              </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                              <a href="{% static '#">-->
+<!--                                    <i class="fa fa-twitter" aria-hidden="true"></i>-->
+<!--                              </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                              <a href="{% static '#">-->
+<!--                                    <i class="fa fa-google-plus" aria-hidden="true"></i>-->
+<!--                              </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                              <a href="{% static '#">-->
+<!--                                    <i class="fa fa-instagram" aria-hidden="true"></i>-->
+<!--                              </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                              <a href="{% static '#">-->
+<!--                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>-->
+<!--                              </a>-->
+<!--                        </li>-->
+<!--                  </ul>-->
+<!--            </div>-->
+<!--      </div>-->
+<!--</div>-->
+<!--header top-->
+      <div class="row">
+      {% if messages %}
+                <div class="container alert alert-success">
+                    <ul class="messages">
+                    {% for message in messages %}
+                    <li>{% if message.tags %}{% endif %}  {{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                    </div>
+                {% endif %}
+      </div>
+<!--Header Upper-->
+<section class="header-uper">
+      <div class="container clearfix">
+            <div class="logo">
+                  <figure>
+                        <a href="{% url 'home' %}">
+                              <img src="{% static 'images/logo.png' %}" alt="" width="130">
+                        </a>
+                  </figure>
+            </div>
+            <div class="right-side">
+                  <ul class="contact-info">
+
+<!--                         <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-phone"></i>
+                              </div>
+                              <strong>Call Now</strong>
+                              <br>
+                              <span>+ (88017) - 123 - 4567</span>
+                        </li> -->
+                      {% if request.session.is_login == 1 %}
+                          <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-user"></i>
+                              </div>
+
+                              <strong><a href="{% url 'manage_profile' %}">
+                                    Manage Profile
+                              </a></strong>
+                              <br>
+
+                        </li>
+                  </ul>
+                    {% endif %}
+                  <div class="link-btn">
+                        <a href="{% url 'physio_list' %}" class="btn-style-one">Book an Appointment</a>
+                  </div>
+
+            </div>
+      </div>
+</section>
+<!--Header Upper-->
+
+
+
+
+
+  <nav class="navbar navbar-default">
+      <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                  </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                        <li class="active">
+                              <a href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li>
+                              <a href="{% url 'about' %}">About</a>
+                        </li>
+                        <li>
+                              <a href="{% url 'treatments' %}">Treatments</a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts
+                                    <span class="caret"></span>
+                              </a>
+                              <ul class="dropdown-menu "  style="background-color: #48bdc5;">
+                                    <li >
+                                          <a href="{% url 'sunday_tips' %}" style="color:black;">Tips</a>
+                                    </li>
+                                    <li>
+                                          <a href="{% url 'photo_video' %}" style="color:black;">Photos/Videos</a>
+                                    </li>
+                              </ul>
+                        </li>
+
+                         <li>
+                              <a href="{% url 'contact' %}">Contact</a>
+                        </li>
+
+                            {% if request.session.is_login == 1 %}
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+                            {% else %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register
+                                    <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu "  style="background-color: #48bdc5;">
+                                    <li >
+                                          <a href="{% url 'physio_register' %}" style="color:black;">Physiotherapist Register</a>
+                                    </li>
+                                    <li>
+                                          <a href="{% url 'patient_register' %}" style="color:black;">Patient Register</a>
+                                    </li>
+                                    </ul>
+                                </li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            {% endif %}
+                  </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+</nav>
+
+      {% block base_head %}
+      {% endblock %}
+
+      <footer class="footer-main">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="about-widget">
+            <div class="footer-logo">
+              <figure>
+                <a href="{% static 'index-2.html' %}">
+                  <img src="{% static 'images/logo-2.png' %}" alt="">
+                </a>
+              </figure>
+            </div>
+            <h1 style="color: white;">Physio Plus</h1>
+            <ul class="location-link">
+              <li class="item">
+                <i class="fa fa-map-marker"></i>
+                <p>Modamba, NY 80021, United States</p>
+              </li>
+              <li class="item">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <a href="{% static '#">
+                  <p>Support@medic.com</p>
+                </a>
+              </li>
+              <li class="item">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <p>(88017) +123 4567</p>
+              </li>
+            </ul>
+            <ul class="list-inline social-icons">
+              <li><a href="{% static '#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="{% static '#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="{% static '#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="{% static '#"><i class="fa fa-vimeo"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <h6>Treatments</h6>
+          <ul class="menu-link">
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Pediatrics</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Sports</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Women's health</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Neurology</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i> Clinical electrophysiology</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="social-links">
+            <h6>Recent Posts</h6>
+            <ul>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="{% static 'images/blog/post-thumb-small.jpg' %}" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="{% static '#">Post Title</a></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="{% static '#">
+                      <img class="media-object" src="{% static 'images/blog/post-thumb-small.jpg' %}" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <a href="{% static '#">Post Title</a>
+                    </h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container clearfix">
+      <div class="copyright-text">
+        <p>&copy; Copyright 2018. All Rights Reserved by
+          <a href="{% url 'login' %}">Physio Plus</a>
+        </p>
+      </div>
+      <!-- <ul class="footer-bottom-link">11
+        <li>
+          <a href="{% static 'index-2.html' %}">Home</a>
+        </li>
+        <li>
+          <a href="{% static 'about.html' %}">About</a>
+        </li>
+        <li>
+          <a href="{% static 'contact.html' %}">Contact</a>
+        </li>
+      </ul> -->
+    </div>
+  </div>
+</footer>
+<!--End footer-main-->
+
+</div>
+<!--End pagewrapper-->
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target=".header-top">
+  <span class="icon fa fa-angle-up"></span>
+</div>
+
+<script src="{% static 'plugins/jquery.js' %}"></script>
+<script src="{% static 'plugins/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-select.min.js' %}"></script>
+<!-- Slick Slider -->
+<script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+<!-- FancyBox -->
+<script src="{% static 'plugins/fancybox/jquery.fancybox.min.js' %}"></script>
+<!-- Google Map -->
+<script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw' %}"></script>
+<script src="{% static 'plugins/google-map/gmap.js' %}"></script>
+
+<script src="{% static 'plugins/validate.js' %}"></script>
+<script src="{% static 'plugins/wow.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui.js' %}"></script>
+<script src="{% static 'plugins/timePicker.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/validation.js' %}"></script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="mdtimepicker.js"></script>
+
+{% block jq_end %}
+  {% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>
+

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+{% extends 'base_patient.html' %}
+{% load static %}
+
+<body>
+{% block base_head %}
+
+<section class="page-title text-center" style="background-image:url(images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Media Tips</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% static 'index.php' %}">home &nbsp;/</a>
+                </li>
+                <li>Media Tips</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="gallery bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3>Media Tips
+                        <span>by our Physiotherapists</span>
+                    </h3>
+                    <p>A doctorate level medical professionalwith thw skills and education
+                        <br>necessary to diagnose,treat and co-ordinate care of patients.</p>
+                </div>
+            </div>
+            {% for media in media_list %}
+            <div class="col-md-4 col-sm-6">
+
+                    {% if media.type == 'image' %}
+                <div class="gallery-item">
+                    <img src="{{BASE_DIR}}{{media_list.video_photo}}" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="{{BASE_DIR}}{{media.video_photo}}"></a>
+                     </div>
+                    {% else %}
+                    
+                    <video class="slider-video" width="100%" preload="auto" loop="" autoplay="" style="visibility: visible; height:272px;width: 300px;" poster="//dl.dropbox.com/s/5aeyg9ntj1fs8v1/typing-numbers.jpg">
+                        <source src="{{BASE_DIR}}{{media.video_photo}}" type="video/mp4">
+                        </video>
+                        <a href="#" class="video-play"></a>
+                  
+                    {% endif %}
+                    <!-- <h3>Facility 01</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, in.</p> -->
+               <br><br>
+                <div class="image-content text-center">
+                        <span>Better Service At Low Cost</span>
+                        <a href="service.html">
+                            <h6>{{ media.post_title }}</h6>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, vero.</p>
+                    </div>
+            </div>
+            {% endfor %}
+            
+            
+            
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                    <div class="video-testimonial-block" style="height: 325px;width: 300px;">
+                        <!-- <div class="video-thumbnail"><img src="https://easetemplate.com/free-website-templates/finvisor/images/testi_img_1.jpg" alt="" class="img-fluid"></div> -->
+                        
+                        <!-- <div class="video">
+                            <iframe src="https://www.youtube.com/embed/KEiAVv1UNac" allowfullscreen  style="height:272px;width: 300px;">
+                            </iframe>
+                        </div> -->
+                        <a href="#" class="video-play"></a>
+                    </div>
+                    <div class="video-testimonial-content">
+                        <h4 class="mb10">Harlan M. Williams</h4>
+                        <p>Student Loan</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ {% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

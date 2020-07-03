@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+{% extends 'base_patient.html' %}
+{% load static %}
+
+<body>
+{% block base_head %}
+
+
+<section class="page-title text-center" style="background-image:url(assets/images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Feedback</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% static 'index.html' %}">home &nbsp;/</a>
+                </li>
+                <li>Feedback</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="section contact">
+    <!-- container start -->
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="contact-form">
+                    <!-- contact form start -->
+                    <form action="{% url 'feedback_success' physio.id %}" method="post" class="row">
+                        <!-- name -->{% csrf_token %}
+                        <div class="col-md-12">
+                           <h3><label>{{user.first_name}} {{user.last_name}}</label></h3>
+                        </div><br><br>
+                       
+                       
+                        <!-- message -->
+                        <div class="col-md-12">
+                            <textarea name="description" rows="10" class="form-control main" placeholder="Your feedback"></textarea>
+                        </div>
+                        <!-- submit button -->
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-style-one" type="submit">Send Message</button>
+                        </div>
+                    </form>
+                    <!-- contact form end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container end -->
+</section>
+
+
+ {% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+<script src="jquery-3.4.1.min.js"></script>
+
+{% block base_head %}
+
+<section class="page-title text-center" style="background-image:url(assets/images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Media Posts</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="index.html">home &nbsp;/</a>
+                </li>
+                <li>Media posts</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="section contact">
+    <!-- container start -->
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="contact-form">
+                    <!-- contact form start -->
+                    <form action="{% url 'photo_success' %}" class="row" enctype="multipart/form-data" method="post" data-parsley-validate>
+                        <!-- name -->{% csrf_token %}
+
+                        <div class="form-group col-md-4">
+                        <label>Treatments : </label>
+                        <select name="treatment_id" class="form-control" required="">
+                                {% for treatment in treatment_list %}
+                                <option value="{{treatment.id}}">{{treatment.treatment_name}}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+
+                         <div class="col-md-12">
+                            <input type="text" name="name" class="form-control main" placeholder="Title for tip..." required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <textarea name="message" rows="10" class="form-control main" placeholder="description"></textarea>
+                        </div>
+
+
+                         <div class="form-group col-md-6">
+                        <label>Media Type : </label>
+                        <input id="image_up" class="media_type" type="radio" name="type" value="image" >Image
+                        <input id="video_up" class="media_type" type="radio" name="type" value="video" >video
+                        </div>
+
+
+
+
+                         <div class="col-md-12" >
+                            <label name="image_tips">Upload Media :</label>
+                            <input id="importfile" style="display:none" type="file" accept="" name="media_tips" value="Upload image"><br>
+                         </div>
+
+                        
+                       
+                       
+                        <!-- message -->
+
+                        <!-- submit button -->
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-style-one" type="submit">Upload tips as media</button>
+                        </div>
+                    </form>
+                    <!-- contact form end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container end -->
+</section>
+
+
+
+ {% endblock %}
+{% block end_js %}
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(document).on('change','.media_type',function(e){
+                m_type = $(this).val();
+                if(m_type == 'image'){
+                    $('#importfile').css('display', 'block');
+                    $('#importfile').attr('accept', 'image/x-png,image/gif,image/jpeg');
+                }else{
+                    $('#importfile').css('display', 'block');
+                    $('#importfile').attr('accept', 'video/mp4,video/x-m4v,video/*');
+                }
+            });
+
+
+        });
+    </script>
+{% endblock %}
+
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->

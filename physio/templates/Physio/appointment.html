@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+<body>
+{% block base_head %}
+
+<section class="page-title text-center" style="background-image:url(assets/images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Appointment</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="home.php">home &nbsp;/</a>
+                </li>
+                <li>Appointment</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="section contact">
+    <!-- container start -->
+    <div class="container">
+        <div class="row">
+            
+            <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped custom-table mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th>patient id</th>
+                                        <th>patient Name</th>
+                                        <th>chief Complain</th>
+                                        <th>Time slot</th>
+                                        <th>Booking date</th>
+                                        <th>diagnosis_photo</th>
+                                        <th class="text-center">Approve</th>
+                                         <th class="text-center">DisApprove</th>
+                                          <th class="text-center">isActive</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for appointments in appointment_list%}
+                                    <tr>
+                                        <td id="pid">{{appointments.patient_id.id}} </td>
+                                        <td>{{appointments.patient_id.first_name}}  {{appointments.patient_id.last_name}}</td>
+                                        <td>{{appointments.time}}</td>
+                                        <td>{{appointments.date_of_appointment}}</td>
+                                        <td>{{appointments.treatment_id}}</td>
+                                        <td>{{appointments.patient_description}}</td>
+                                         <!-- <td class="text-center"><a class="text-center text-danger approve activeornot" id="1" href=""><i class="fa fa-check-square-o"></i>Approve</a></td> -->
+                                         <td class="text-center"><button type="button" class = "approve" data-pid="{{appointments.patient_id.id}}" id= "1">Approve </button></td>
+                                        <!-- <td class="text-center"><a class="text-center text-primary disapprove activeornot" id="0"><i class="fa fa-times-circle"></i>Disapprove</a></td> -->
+                                        <td class="text-center"><button type="button" class ="diapprove" data-pid="{{appointments.patient_id.id}}" id= "1">Disapprove </button></td>
+                                        <td class="text-center"><input id="toggle-one" checked type="checkbox"></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- container end -->
+</section>
+
+
+ {% endblock %}
+ {% block end_js %}
+
+<script type="text/javascript">
+    
+        $(".approve").click(function(){
+                alert('appointent approved');
+                var app = $(".approve").attr('id');
+                var patid = $(".approve").data('pid');
+                alert($(".approve").data('pid'));
+                $.ajax({
+                    type:'POST',
+                    url:'approve_ajax',
+                    data:{'app':app,
+                          'csrfmiddlewaretoken': '{{ csrf_token }}',
+                         },
+                    success:function(message,s){
+                        var appr = document.getElementById('1');
+                        appr.innerHTML = appr.innerHTML.replace('Approve','Approved');
+                        $('.disapprove').attr('disabled','true');
+                        alert(s);
+                    }
+                });
+        });
+              
+</script>
+
+ {% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

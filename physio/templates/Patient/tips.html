@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+{% extends 'base_patient.html' %}
+{% load static %}
+
+<body>
+{% block base_head %}
+
+<section class="page-title text-center" style="background-image:url({% static 'images/background/3.jpg' %});">
+    <div class="container">
+        <div class="title-text">
+            <h1>Tips</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="index.php">home &nbsp;/</a>
+                </li>
+                <li>Tips</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!--Start about us area-->
+<section class="service-tab-section section">
+    <div class="outer-box clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Nav tabs -->
+                    <div class="tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#sunday"  data-toggle="tab">Sunday</a>
+                                <div class="col-md-12">
+                <a href="">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tips </th>
+                                <th>Treatments </th>
+                            </tr>
+                        </thead>
+                        {% for tips in sundaytips %}
+                        <tr>
+                            <td><a>{{tips.tips_title}}</a> </td>
+                            <td><a>{{tips.treatment_id.treatment_name}}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </a>
+            </div>
+                            </li>
+                            <li role="presentation">
+                                <a href="#monday" data-toggle="tab">Monday</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tuesday" data-toggle="tab">Tuesday</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#wednesday" data-toggle="tab">Wednesday</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#thursday" data-toggle="tab">Thursday</a>
+                            </li>
+                             <li role="presentation">
+                                <a href="#friday" data-toggle="tab">Friday</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#saturday" data-toggle="tab">Saturday</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Start single tab content-->
+        <div class="tab-content">
+        <div class="service-box tab-pane fade in active row" id="sunday">
+                            
+        <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    {% for tips in tips_list %}
+                                    <tr>
+                                        
+                                        
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">{{tips.created_at}}</span>
+                                                    <h4 class="title">
+                                                        {{tips.tips_title}}
+                                                        <span class="pull-right pagado">({{tips.treatment_id.treatment_name}})</span>
+                                                    </h4>
+                                                    <p class="summary">{{tips.description}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                    
+                                            </tbody>
+                                             </table>
+                                             </div>
+                        </div>
+                    </div>
+                            <div class="content-footer">
+                    
+                            </div>
+            </div>
+        </section>
+        </div>
+        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+        <div class="service-box tab-pane fade in" id="monday">
+                                             
+        <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    {% for tips in tips_list %}
+                                    <tr>
+                                        
+                                        
+                                        <td>
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                                    <h4 class="title">
+                                                        {{tips.tips_title}}
+                                                        <span class="pull-right pagado">({{tips.treatment_id.treatment_name}})</span>
+                                                    </h4>
+                                                    <p class="summary">{{tips.description}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                    
+                                            </tbody>
+                                             </table>
+                                             </div>
+                                        </div>
+                                        </div>
+                            <div class="content-footer">
+                    
+                </div>
+            </div>
+        </section>
+        </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="tuesday">
+                                             
+        <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    {% for tips in tips_list %}
+                                    <tr>
+                                        
+                                        
+                                        <td>
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                                    <h4 class="title">
+                                                        {{tips.tips_title}}
+                                                        <span class="pull-right pagado">({{tips.treatment_id.treatment_name}})</span>
+                                                    </h4>
+                                                    <p class="summary">{{tips.description}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                    
+                                            </tbody>
+                                             </table>
+                                             </div>
+                                        </div>
+                                        </div>
+                            <div class="content-footer">
+                    
+                </div>
+            </div>
+        </section>
+        </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="wednesday">
+                                             
+        <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    {% for tips in tips_list %}
+                                    <tr>
+                                        
+                                        
+                                        <td>
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                                    <h4 class="title">
+                                                        {{tips.tips_title}}
+                                                        <span class="pull-right pagado">({{tips.treatment_id.treatment_name}})</span>
+                                                    </h4>
+                                                    <p class="summary">{{tips.description}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                    
+                                            </tbody>
+                                             </table>
+                                             </div>
+                                        </div>
+                                        </div>
+                            <div class="content-footer">
+                    
+                </div>
+            </div>
+        </section>
+        </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="thursday">
+                                             
+        <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    {% for tips in tips_list %}
+                                    <tr>
+                                        
+                                        
+                                        <td>
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                                    <h4 class="title">
+                                                        {{tips.tips_title}}
+                                                        <span class="pull-right pagado">({{tips.treatment_id.treatment_name}})</span>
+                                                    </h4>
+                                                    <p class="summary">{{tips.description}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                    
+                                            </tbody>
+                                             </table>
+                                             </div>
+                                        </div>
+                                        </div>
+                            <div class="content-footer">
+                    
+                </div>
+            </div>
+        </section>
+        </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="friday">
+                                             
+        <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    {% for tips in tips_list %}
+                                    <tr>
+                                        
+                                        
+                                        <td>
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                                    <h4 class="title">
+                                                        {{tips.tips_title}}
+                                                        <span class="pull-right pagado">({{tips.treatment_id.treatment_name}})</span>
+                                                    </h4>
+                                                    <p class="summary">{{tips.description}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                    
+                                            </tbody>
+                                             </table>
+                                             </div>
+                                        </div>
+                                        </div>
+                            <div class="content-footer">
+                    
+                </div>
+            </div>
+        </section>
+        </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="saturday">
+                                             
+        <div class="row">
+        <section class="content">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        
+
+                        <div class="table-container">
+                            <table class="table table-filter">
+                                <tbody>
+                                    {% for tips in tips_list %}
+                                    <tr>
+                                        
+                                        
+                                        <td>
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="media">
+                                                
+                                                <div class="media-body">
+                                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                                    <h4 class="title">
+                                                        {{tips.tips_title}}
+                                                        <span class="pull-right pagado">({{tips.treatment_id.treatment_name}})</span>
+                                                    </h4>
+                                                    <p class="summary">{{tips.description}}</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                    
+                                            </tbody>
+                                             </table>
+                                             </div>
+                                        </div>
+                                        </div>
+                            <div class="content-footer">
+                    
+                </div>
+            </div>
+        </section>
+        </div>
+                        </div>
+                        <!--End single tab content-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End about us area-->
+
+
+ {% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

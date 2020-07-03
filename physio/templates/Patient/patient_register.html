@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+{% extends 'base_patient.html' %}
+{% load static %}
+<body>
+{% block base_head %}
+<section class="page-title text-center" style="background-image:url(assets/images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Register</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% url 'home' %}">home &nbsp;/</a>
+                </li>
+                <li>Patient register</li>
+            </ul>
+        </div>
+    </div>
+</section><br><br><br>
+		<div class="container">
+            <h1 class="text-center text-primary"> Patient Registration Form</h1><br>
+            <section class="section contact">
+    <!-- container start -->
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="contact-form">
+                    <!-- contact form start -->
+                    <form action="{% url 'patient_register_success' %}" method="post" class="row" id="register" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group col-md-6">
+                        <label>First Name : </label>
+                        <input type="text" name="p_fname" class="form-control" value="" maxlength="50" required="">
+
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <label>Last Name : </label>
+                        <input type="text" name="p_lname" class="form-control" value="" maxlength="50" required="">
+
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <label>Date Of Birth : </label>
+                        <input type="date" name="dob" class="form-control" value="" maxlength="50" required="">
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Email : </label>
+                        <input type="email" name="email" class="form-control" value="" maxlength="30" required="">
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Age : </label>
+                        <input type="text" name="age" class="form-control" value="" maxlength="3" required="">
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Contact No. : </label>
+                        <input type="text" name="mobile" class="form-control" value="" maxlength="12" required="">
+
+                    </div>
+
+                     <div class="form-group col-md-6">
+                        <label>Gender : </label>
+                        <input type="radio" name="Gender" value="Male" >Male
+                        <input type="radio" name="Gender" value="Female" >Female
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Photo : </label>
+                        <input type="file" name="image" id="fileUpload" >
+
+                    </div>
+
+                     <div class="form-group col-md-12">
+                        <label>Address : </label>
+                        <textarea name="Address" class="form-control"></textarea>
+
+                    </div>
+
+
+
+                    <div class="form-group col-md-4">
+                        <label>Area : </label>
+                        <select name="area" id="id_area" class="form-control">
+                                {% for area in area_list %}
+                                <option value="{{area.id}}">{{area.area_name}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>City : </label>
+                        <select name="city" id="id_city" class="form-control">
+                               {% for city in city_list %}
+                                <option value="{{city.id}}">{{city.city_name}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>State : </label><br>
+                        <select name="state" id="id_state" class="form-control">
+                                {% for state in state_list %}
+                                <option value="{{state.id}}">{{state.state_name}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group  col-md-6">
+                        <label>Choose Question : </label>
+                        <select name="sec_que" class="form-control">
+                                 {% for security_question in sec_que_list %}
+                                <option value="{{security_question.id}}">{{security_question.que_name}}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+                     <div class="form-group col-md-6">
+                        <label>Answer : </label>
+                        <input type="text" name="answer" class="form-control" value="" maxlength="12" required="">
+
+                    </div>
+
+
+
+
+
+
+                    <div class="form-group col-md-6">
+                        <label>Password : </label>
+                        <input type="password" name="password" id="password" class="form-control" value="" maxlength="8" required="">
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Confirm Password : </label>
+                        <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" value="" maxlength="8" required="">
+                        <b id="msg"></b>
+                    </div>
+
+                     <div class="col-md-12 text-right">
+                            <button class="btn btn-style-one bg-success" id="submit" disabled="" type="submit" href="{% url 'physio_home' %}">Submit</button>
+                        </div>
+
+                    </form>
+                    <!-- contact form end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- container end -->
+</section>
+
+        </div>
+{% endblock %}
+{% block jq_end %}
+<script type="text/javascript">
+     $(document).ready(function(){
+    st=1;
+     $("#confirmpassword").blur(function(){
+     ps=$("#password").val();
+       psc=$('#confirmpassword').val();
+    alert("This input field has lost its focus.");
+    if(ps==psc)
+    {
+    $('#submit').attr('disabled','false');
+    }
+    else
+    {
+    $('#submit').attr('disabled','true');
+    }
+  });
+
+   });
+ 
+  </script>
+
+{% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

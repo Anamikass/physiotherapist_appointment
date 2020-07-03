@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+<body>
+{% block base_head %}
+
+<section class="page-title text-center" style="background-image:url(assets/images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Tips</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="index.html">home &nbsp;/ </a>
+                </li>
+                <li>Tips</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<section class="section contact">
+    <!-- container start -->
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="contact-form">
+                    <!-- contact form start -->
+                    <form action="{% url 'tips_success' %}" class="row" method="post" data-parsley-validate>
+                        <!-- name -->{% csrf_token %}
+<!--                        <div class="form-group col-md-4">-->
+<!--                        <h3>Dr.    {{user.first_name}}   {{user.last_name}}</h3>-->
+<!--                        </div>-->
+                         <div class="form-group col-md-4">
+                        <label>Treatments : </label>
+                        <select name="treatment_id" class="form-control" required="">
+                                {% for treatment in treatment_list %}
+                                <option value="{{treatment.id}}">{{treatment.treatment_name}}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                        <div class="col-md-12">
+                            <input type="text" name="title" class="form-control main" placeholder="Title for tip..." required>
+                        </div>
+                       
+                       
+                        <!-- message -->
+                        <div class="col-md-12">
+                            <textarea name="description" rows="10" class="form-control main" placeholder="description" required></textarea><sub></sub>
+                        </div>
+
+                        <!-- submit button -->
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-style-one" type="submit">Upload tip</button>
+                        </div>
+                    </form>
+                    <!-- contact form end -->
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <a href="">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tips </th>
+                                <th>Treatments </th>
+                            </tr>
+                        </thead>
+                        {% for tips in tips_list %}
+                        <tr>
+                            <td><a>{{tips.tips_title}}</a> </td>
+                            <td><a>{{tips.treatment_id.treatment_name}}</a></td>
+                            <td><button class="btn btn-primary">Edit</button></td>
+                            <td><button class="btn btn-danger">Delete</button></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- container end -->
+</section>
+
+ {% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>

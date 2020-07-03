@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+{% load static %}
+<head xmlns="http://www.w3.org/1999/html">
+     <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+  <title>Physio Plus</title>
+
+  
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick-theme.css' %}">
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="{% static 'plugins/fancybox/jquery.fancybox.min.css' %}">
+  
+  <!-- Stylesheets -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+   <link href="{% static 'css/login.css' %}" rel="stylesheet">
+   <link href="{% static 'css/validation.css' %}" rel="stylesheet">
+  <script src="{% static 'plugins/jquery.js' %}"></script>
+  <script src="{% static 'js/validation.js' %}"></script>
+<script src="{% static 'plugins/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-select.min.js' %}"></script>
+<!-- Slick Slider -->
+<script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+<!-- FancyBox -->
+<script src="{% static 'plugins/fancybox/jquery.fancybox.min.js' %}"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="{% static 'plugins/google-map/gmap.js' %}"></script>
+
+<script src="{% static 'plugins/validate.js' %}"></script>
+<script src="{% static 'plugins/wow.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui.js' %}"></script>
+<script src="{% static 'plugins/timePicker.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+  
+  <!--Favicon-->
+  <link rel="shortcut icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'images/favicon.html' %}" type="image/x-icon">
+
+  <style type="text/css" media="screen">
+      .img
+      {
+        background-image: url('/static/images/background/physio-logo.jpg');
+        width: auto;
+        height: 380px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+       /*  box-shadow: 2px 2px 2px #038197; */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16),0 2px 10px rgba(0, 0, 0, 0.12);
+        margin-top: 80px;
+        /* border: 1px solid black; */
+      }
+      
+  /*   .vl 
+    {
+      border-right: 1px solid  #48bdc5;
+      height: 500px;
+      position: absolute;
+      left: 100%;
+   
+      top: 0;
+    } */
+    .change_link
+    {
+        color:white;
+    }
+    .to_register
+    {
+        color:white;
+        font-weight:bold;
+        text-decoration:underline;
+    }
+      
+  </style>
+</head>
+<body>
+        <div class="container login-container">
+            <div class="row">
+                {% if messages %}
+                <div class="container alert alert-danger">
+                    <ul class="messages">
+                    {% for message in messages %}
+                    <li>{% if message.tags %}{% endif %}  {{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                    </div>
+                {% endif %}
+                <div class="col-md-6 bg-success login-form-1">
+                    <h3>Patient Login</h3>
+                    <form action="{% url 'login_patient' %}" method="post" class="row" data-parsley-validate="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Your Username *" value="" required=""/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Your Password *" value="" required=""/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login"/>
+                        </div>
+                        <div class="form-group">
+                            <p class="change_link text-center">Not an account ?
+                            <a href="{% url 'patient_register' %}" class="to_register">Register</a></p>
+                        </div>
+                        <div class="form-group">
+                            <a href="#pa_forgotpass" class="btnForgetPwd" id="pa_password" required="">Forget Password?</a>
+                        </div>
+                        </form>
+                                <div class="form-group" id="pa_frgt_pswd" style="display: none;">
+                                    <form action="{% url 'password_reset' %}" method="post" class="row" data-parsley-validate="">
+                                        {% csrf_token %}
+                                        <label style="color: white;">Choose Question:</label><br>
+                                
+                                            <select id="pa_forgotpass" required="" style="width: 374.41px;height: 34px;">
+                                                {% for security_question in sec %}
+                                                 <option selected="" disabled="">Choose Security Question</option>
+                                                  <option value="{{security_question.id}}">{{security_question.que_name}}</option>
+                                                {% endfor %}
+
+                                                </select> <br><br>
+
+                                                <input type="text" name="ans" class="form-control" id="pa_sec_q_ans"  placeholder="Answer"><br>
+                                                <button type="submit" class="btn-style-one" id="pa_submit" style=" ">Submit</button>
+                                    </form>
+                                </div>
+
+
+                </div>
+                <div class="col-md-6 login-form-2">
+                    <div class="login-logo">
+                        <img src="{% static 'images/background/physio-logo.jpg' %}" alt="" />
+                    </div>
+                    <h3>PhysioTherapist Login</h3>
+                    <form action="{% url 'login_physio' %}" method="post" class="row" data-parsley-validate="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Your Username *" value="" required=""/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Your Password *" value="" required=""/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <p class="change_link text-center">Not an account ?
+                            <a href="{% url 'physio_register' %}" class="to_register">Register</a></p>
+                        </div>
+                        <div class="form-group">
+
+                            <a href="#phy_frgt_pswd" class="btnForgetPwd" id="phy_password" value="Login">Forget Password?</a>
+                        </div>
+                         </form>
+                                 <div class="form-group" id="phy_frgt_pswd" style="display: none;">
+                                        <form action="{% url 'password_reset' %}" method="post" class="row" data-parsley-validate="">
+                                        {% csrf_token %}
+                                        <label style="color: white;">Choose Question:</label><br>
+
+                                            <select id="phy_forgotpass" required=""  style="width: 374.41px;height: 34px;">
+                                                {% for security_question in sec %}
+                                                 <option selected="" disabled="">Choose Security Question</option>
+                                                  <option value="{{security_question.id}}">{{security_question.que_name}}</option>
+                                                {% endfor %}
+                                            </select> <br><br>
+                                      <input type="text" name="ans" class="form-control" id="phy_sec_q_ans" required="" placeholder="Answer"><br>
+                                        <button type="submit" class="btn-style-ones" id="phy_submit" >Submit</button>
+                                        </form>
+                                 </div>
+
+                </div>
+            </div>
+        </div> 
+
+        <script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $("#pa_password").click(function () {
+
+    
+    $("#pa_frgt_pswd").fadeToggle('fast', function() {
+        
+    });
+   
+});
+
+    $("#phy_password").click(function () {
+
+    
+    $("#phy_frgt_pswd").fadeToggle('fast', function() {
+        
+    });
+   
+});
+  });
+
+</script>   
+</body>
+</html>

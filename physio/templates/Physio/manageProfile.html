@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+<body>
+{% block base_head %}
+
+
+  <div class="page-wrapper">
+    <!-- Preloader -->
+    <!-- <div class="preloader"></div> -->
+    <!-- Preloader -->
+
+
+<section class="page-title text-center" style="background-image:url({% static 'images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Manage Profile</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% url 'physio_home' %}">home &nbsp;/</a>
+                </li>
+                <li>Manage Profile</li>
+            </ul>
+        </div>
+    </div>
+</section>
+      <br><br>
+
+<div class="container emp-profile">
+            <form method="post" action="{% url 'manage_success' %}" enctype="multipart/form-data" data-parsley-validate>
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="{{user.image}}" alt=""/>
+                            <div class="file btn btn-lg btn-primary" style=" position: relative;
+                                                    overflow: hidden;
+                                                    margin-top: -20%;
+                                                    width: 66%;
+                                                    border: none;
+                                                    border-radius: 0;
+                                                    font-size: 15px;
+                                                     background: #212529b8;">
+                                Change Photo
+                                <input type="file" name="image" style="position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h4>
+                                        {{user.first_name}} {{user.last_name}}
+                                    </h4>
+
+                                  <!--   <p class="proile-rating">RANKINGS : <span>8/10</span></p> -->
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- <div class="profile-work">
+                            <p>WORK LINK</p>
+                            <a href="">Website Link</a><br/>
+                            <a href="">Bootsnipp Profile</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <a href="">Web Designer</a><br/>
+                            <a href="">Web Developer</a><br/>
+                            <a href="">WordPress</a><br/>
+                            <a href="">WooCommerce</a><br/>
+                            <a href="">PHP, .Net</a><br/>
+                        </div> -->
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab active" id="myTabContent">
+                            <div class="tab-pane  active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>First Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" required="" name="p_fname" value="{{user.first_name}}" class="form-control">
+
+                                            </div>
+                                        </div><br>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Last Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                  <input type="text" required="" name="p_lname" value="{{user.last_name}}" class="form-control">
+
+                                            </div>
+                                        </div><br>
+                                         <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>DOB</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="date" required="" name="dob" value="{{user.dob|date:'y-m-d'}}" placeholder="" class="form-control">
+                                            </div>
+                                        </div><br>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="email" name="email" required="" value="{{user.email}}" placeholder="" class="form-control">
+
+                                            </div>
+                                        </div><br>
+
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="tel" name="ph_no" required="" value="{{user.ph_no}}" placeholder="" class="form-control">
+                                            </div>
+                                        </div><br>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="radio"  {% if user.gender == "Male" %} checked {% endif %} name="gen" value="Male" placeholder="">Male
+                                                 <input type="radio" {% if user.gender == "Female" %} checked {% endif %} name="gen" value="Female" placeholder="">Female
+                                            </div>
+                                        </div><br>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <textarea name="address" required="" placeholder="address" value="{{user.address}}" class="form-control">{{user.address}}</textarea>
+                                            </div>
+                                        </div><br>
+
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>State</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                 <select name="state" style="width: 343px; height: 34px;">
+                                                     {% for state in state_list %}
+                                                        <option value="{{state.id}}">{{state.state_name}}</option>
+                                                     {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><br>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>City</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                               <select name="city" style="width: 343px; height: 34px;" >
+                                                    {% for city in city_list %}
+                                                        <option value="{{city.id}}" {% if city.id == user.city_id.id %}selected{% endif %}>{{city.city_name}}</option>
+                                                     {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><br>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Area</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select name="area" style="width: 343px; height: 34px;">
+                                                    {% for area in area_list %}
+                                                        <option value="{{area.id}}">{{area.area_name}}</option>
+                                                     {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><br>
+                                        <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Security Question</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select name="sec_que" style="width: 343px; height: 34px;">
+                                                    {% for sec in sec_que_list %}
+                                                        <option value="{{sec.id}}">{{sec.que_name}}</option>
+                                                     {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                         <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Answer</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="ans" value="{{user.ans}}" class="fom">
+                                            </div>
+                                        </div><br>
+                                         <div class="row form-group">
+                                            <div class="col-md-6">
+                                                <label>Password</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input required="" id="password-field" type="password" class="form-control" name="password" value="{{user.password}}">
+                                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                             </div>
+                                        </div><br>
+                                 <div class="link-btn">
+                                     <button style="font-size: 14px;font-weight: 600;
+                                                                 color: #ffffff;
+                                                        line-height: 27px;
+                                                    padding: 8px 36px;
+                                                     background: #48bdc5;
+                                                    border: 1px solid #48bdc5;
+                                                    display: inline-block;
+                                                      text-transform: uppercase;
+                                                    font-family: Source Sans Pro,
+                                                    sans-serif;" type="submit">save</button>
+                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+  </div>
+
+ {% endblock %}
+</body>
+
+
+<!-- Mirrored from demo.themefisher.com/themefisher/medic/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2020 22:36:10 GMT -->
+</html>
